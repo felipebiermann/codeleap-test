@@ -1,9 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/authContext";
 
 export function Modal() {
   const [showModal, setShowModal] = useState(false);
-  const [name, setName] = useState();
+  const [name, setName] = useState({
+    username: "",
+  });
+  console.log(name);
+
+  const { setLoggedInUser } = useContext(AuthContext);
   return (
     <>
       <button
@@ -52,7 +58,6 @@ export function Modal() {
                     <button
                       className="text-white bg-[#000] font-bold uppercase text-sm px-6 py-3 mr-1 mb-1"
                       type="button"
-                      onClick={() => setShowModal(false)}
                       disabled={!name}
                     >
                       Enter
