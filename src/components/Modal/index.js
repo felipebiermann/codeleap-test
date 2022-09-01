@@ -1,15 +1,37 @@
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/authContext";
+import axios from "axios";
 
 export function Modal() {
   const [showModal, setShowModal] = useState(false);
-  const [name, setName] = useState({
+  const [user, setUser] = useState({
     username: "",
   });
-  console.log(name);
-
+  console.log(user);
+  const navigate = useNavigate();
   const { setLoggedInUser } = useContext(AuthContext);
+
+  function handleChange(e) {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  }
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(
+        "https://dev.codeleap.co.uk/careers/",
+        user
+      );
+      setLoggedInUser({ ...response.data });
+
+      localStorage.setItem("loggedInUser", JSON.stringify(response.data));
+
+      navigate("/main");
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <>
       <button
@@ -35,14 +57,20 @@ export function Modal() {
                   ></button>
                 </div>
                 <div className="relative p-6 flex-auto">
-                  <form className="px-8 pt-6 pb-8 w-full">
+                  <form
+                    className="px-8 pt-6 pb-8 w-full"
+                    onSubmit={handleSubmit}
+                  >
                     <label className="block text-black text-sm font-bold mb-1">
                       Please enter your username
                     </label>
                     <input
                       autoFocus
                       className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
-                      onChange={(e) => setName(e.target.value)}
+                      onChange={handleChange}
+                      type="username"
+                      name="username"
+                      value={user.username}
                     />
                   </form>
                 </div>
@@ -58,7 +86,7 @@ export function Modal() {
                     <button
                       className="text-white bg-[#000] font-bold uppercase text-sm px-6 py-3 mr-1 mb-1"
                       type="button"
-                      disabled={!name}
+                      disabled={!user}
                     >
                       Enter
                     </button>
