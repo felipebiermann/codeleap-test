@@ -8,12 +8,12 @@ export function Cards(props) {
         <div className="flex-grow pl-3">
           <h6 className="font-bold text-md">{props.username}</h6>
           <p className="text-xs text-gray-600">
-            {state.date.toLocaleDateString()}
+            {/* {state.date.toLocaleDateString()} */}
           </p>
         </div>
       </div>
       <div className="mb-4">
-        <p className="text-sm">{props.description}</p>
+        <p className="text-sm">{props.content}</p>
       </div>
       <div className="flex justify-between"></div>
     </div>

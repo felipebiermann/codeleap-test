@@ -9,6 +9,7 @@ function AuthContextComponent(props) {
     const storedUser = localStorage.getItem("loggedInUser");
 
     const parsedStoredUser = JSON.parse(storedUser || '""');
+    console.log(parsedStoredUser);
 
     if (parsedStoredUser.token) {
       setLoggedInUser(parsedStoredUser);

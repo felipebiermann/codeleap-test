@@ -8,6 +8,7 @@ export function Modal() {
   const [user, setUser] = useState({
     username: "",
   });
+  localStorage.setItem("loggedInUser", JSON.stringify(user));
   console.log(user);
   const navigate = useNavigate();
   const { setLoggedInUser } = useContext(AuthContext);
@@ -68,6 +69,7 @@ export function Modal() {
                       autoFocus
                       className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
                       onChange={handleChange}
+                      // onChange={(e) => setUser(e.target.value)}
                       type="username"
                       name="username"
                       value={user.username}

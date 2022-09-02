@@ -1,5 +1,5 @@
 import { useContext } from "react";
-
+import { AuthContext } from "../../contexts/authContext";
 import { AuthContext } from "../../context/authContext";
 
 import { Navigate } from "react-router-dom";
@@ -13,5 +13,5 @@ export function ProtectedRoute(props) {
     return <Component />;
   }
 
-  return;
+  return <Navigate to="/login" />;
 }

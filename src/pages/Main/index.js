@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
-import { api } from "../../api/api";
+
 import axios from "axios";
+import { Cards } from "../../components/Cards";
 
 export function Main() {
   const [user, setUser] = useState({
-    username: "",
     title: "",
     content: "",
   });
+  console.log(user);
 
   function handleChange(e) {
     e.preventDefault();
@@ -15,6 +16,7 @@ export function Main() {
     console.log(user);
   }
 
+  useEffect(() => {}, []);
   async function handleSubmit(e) {
     e.preventDefault();
     try {
@@ -23,6 +25,19 @@ export function Main() {
       console.log(err);
     }
   }
+
+  useEffect(() => {
+    async function fetchCards() {
+      try {
+        const response = await axios.get("https://dev.codeleap.co.uk/careers/");
+        setUser(response.results);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    fetchCards();
+  }, []);
+
   return (
     <>
       <div className="bg-black">
@@ -45,9 +60,11 @@ export function Main() {
                 Title
               </label>
               <input
-                type="text"
+                // value={user.title}
+                type="string"
                 name="title"
                 id="title"
+                onChange={handleChange}
                 placeholder="Hello world"
                 className="w-full rounded-md border border-[#000] bg-white py-3 px-6 text-base font-medium  outline-none  focus:shadow-md"
               />
@@ -61,11 +78,13 @@ export function Main() {
                 Content
               </label>
               <textarea
+                // value={user.content}
                 rows="4"
                 name="content"
                 id="content"
+                onChange={handleChange}
                 placeholder="Content here"
-                className="w-full resize-none rounded-md border border-[#000] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none  focus:shadow-md"
+                className="w-full resize-none rounded-md border border-[#000] bg-white py-3 px-6 text-base font-medium text-[#000] outline-none  focus:shadow-md"
               ></textarea>
             </div>
             <div className="flex justify-end">
@@ -77,6 +96,18 @@ export function Main() {
               </button>
             </div>
           </form>
+          {/* <div>
+            {user.map((currentElement, key) => {
+              return (
+                <div key={key}>
+                  <Cards
+                    title={currentElement.title}
+                    content={currentElement.content}
+                  />
+                </div>
+              );
+            })}
+          </div> */}
         </div>
       </div>
     </>
