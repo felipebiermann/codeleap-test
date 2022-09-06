@@ -99,21 +99,21 @@ export function Main() {
               </button>
             </div>
           </form>
-          <div>
-            {user.map((currentElement, key) => {
-              return (
-                <div key={key}>
-                  <Cards
-                    title={currentElement.title}
-                    content={currentElement.content}
-                    username={currentElement.username}
-                    created_datetime={currentElement.created_datetime}
-                  />
-                </div>
-              );
-            })}
-          </div>
         </div>
+      </div>
+      <div>
+        {user.map((currentElement, key) => {
+          return (
+            <div key={key}>
+              <Cards
+                title={currentElement.title}
+                content={currentElement.content}
+                username={currentElement.username}
+                created_datetime={currentElement.created_datetime}
+              />
+            </div>
+          );
+        })}
       </div>
     </>
   );
