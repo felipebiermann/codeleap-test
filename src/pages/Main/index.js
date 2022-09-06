@@ -10,6 +10,9 @@ export function Main() {
   });
   console.log(user);
 
+  // const [allList, setAllList] = useState();
+  // console.log(allList);
+
   function handleChange(e) {
     e.preventDefault();
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -30,7 +33,7 @@ export function Main() {
     async function fetchCards() {
       try {
         const response = await axios.get("https://dev.codeleap.co.uk/careers/");
-        setUser(response.results);
+        setUser(response.data.results);
       } catch (err) {
         console.log(err);
       }
@@ -96,18 +99,20 @@ export function Main() {
               </button>
             </div>
           </form>
-          {/* <div>
+          <div>
             {user.map((currentElement, key) => {
               return (
                 <div key={key}>
                   <Cards
                     title={currentElement.title}
                     content={currentElement.content}
+                    username={currentElement.username}
+                    created_datetime={currentElement.created_datetime}
                   />
                 </div>
               );
             })}
-          </div> */}
+          </div>
         </div>
       </div>
     </>

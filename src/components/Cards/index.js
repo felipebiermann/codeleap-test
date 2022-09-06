@@ -1,21 +1,19 @@
 export function Cards(props) {
   return (
-    <div
-      className="w-full rounded-lg bg-white shadow p-5 text-gray-800 font-sans relative flex flex-col justify-between"
-      // style="max-width: 400px"
-    >
-      <div className="flex mb-4">
-        <div className="flex-grow pl-3">
-          <h6 className="font-bold text-md">{props.username}</h6>
-          <p className="text-xs text-gray-600">
-            {/* {state.date.toLocaleDateString()} */}
-          </p>
+    <section className="mb-32 text-gray-800 border border-current ">
+      <div className="block   rounded-lg  bg-white">
+        <div className="bg-black md:px-12">
+          <h2 className="mx-3 text-2xl font-bold mb-4 text-white ">
+            {props.title}
+          </h2>
         </div>
+
+        <p className="text-xs text-gray-600">{props.created_datetime}</p>
+        <p className="mx-2 font-semibold mb-4 text-slate-600">
+          @{props.username}
+        </p>
+        <p className="mx-4 text-gray-500 mb-6">{props.content}</p>
       </div>
-      <div className="mb-4">
-        <p className="text-sm">{props.content}</p>
-      </div>
-      <div className="flex justify-between"></div>
-    </div>
+    </section>
   );
 }
