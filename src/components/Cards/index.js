@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export function Cards(props) {
   return (
     <section className="mx-4 mb-28 text-gray-800 border border-current ">
@@ -9,7 +11,7 @@ export function Cards(props) {
         </div>
 
         <p className="flex justify-end text-xs text-gray-600 mx-2">
-          {props.created_datetime}
+          {moment(props.created_datetime).fromNow()}
         </p>
         <p className=" mx-4 font-semibold mb-4 text-slate-600">
           @{props.username}
