@@ -2,7 +2,15 @@ import moment from "moment";
 
 export function Cards(props) {
   return (
-    <section className="mx-4 mb-28 text-gray-800 border border-current ">
+    <section className="mx-4 mb-24 text-gray-800 border border-current ">
+      <div className="flex relative flex-row bg-white rounded-lg justify-between p-4 text-black">
+        <span
+          className="bg-black rounded-full p-0.5 inline-block absolute text-center right-4 top-12 text-white"
+          onClick={props.onPressRemoveItem}
+        >
+          ✖
+        </span>
+      </div>
       <div className="rounded-lg  bg-white">
         <div className="bg-black p-1">
           <h2 className="py-3 mx-4 text-2xl font-bold  text-white ">
