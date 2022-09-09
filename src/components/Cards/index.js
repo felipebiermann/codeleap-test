@@ -1,12 +1,26 @@
 import moment from "moment";
-import DeleteIcon from "../../images/Vector.svg";
+import DeleteIcon from "../../images/DeleteIcon.svg";
+import EditIcon from "../../images/Vector.svg";
+import EditIcon2 from "../../images/Vector-1.svg";
 
 export function Cards(props) {
   return (
     <section className="mx-4 mb-24 text-gray-800 border border-current ">
       <div className="flex relative flex-row bg-white rounded-lg justify-between p-4 text-black">
         <img
-          className="bg-black rounded-full p-0.5 inline-block absolute text-center right-4 top-12 text-white"
+          className="bg-black p-0.5 inline-block absolute text-center cursor-pointer right-4 top-12 text-white"
+          onClick={props.onPressRemoveItem}
+          src={EditIcon2}
+          alt=""
+        ></img>
+        <img
+          className=" p-0.5 inline-block absolute text-center right-4 cursor-pointer  top-12 text-white"
+          onClick={props.onPressRemoveItem}
+          src={EditIcon}
+          alt=""
+        ></img>
+        <img
+          className=" p-0.5 inline-block absolute text-center right-12  cursor-pointer  top-12 text-white"
           onClick={props.onPressRemoveItem}
           src={DeleteIcon}
           alt=""
